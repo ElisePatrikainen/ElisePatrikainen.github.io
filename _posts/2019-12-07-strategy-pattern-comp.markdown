@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  "Strategy pattern in Angular with dynamic components loading"
-date:   2019-12-05 21:16:17 +0100
-categories: jekyll update
+title:  "[Angular] Strategy pattern with dynamic components"
+date:   2020-05-12 21:16:17 +0100
+categories: Angular
+permalink: /angular/strategy-pattern
 ---
 
 <h3>Introduction:</h3>

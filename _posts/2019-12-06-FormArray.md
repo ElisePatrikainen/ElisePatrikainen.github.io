@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  "FormArray"
-date:   2019-12-05 21:16:17 +0100
-categories: jekyll update
+title:  "[Angular] On the usage of FormArray"
+date:   2020-04-05 21:16:17 +0100
+categories: Angular
+permalink: /angular/formArray
 ---
 
 <br/>
