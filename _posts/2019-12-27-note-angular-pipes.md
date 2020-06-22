@@ -31,42 +31,70 @@ Appart from the useful syntax, in terms of code design, I find them also useful 
 
 They are also more optimized, in terms of application efficiency, then ‘by hands’ solutions, as we will see in the next paragraph.
 
+Let's illustrate first this with an example.
+
+### The usecase / A usecase example
+
+A good usecase for pipes is a situation where:
+- some data needs to be formatted to be displayed
+- this formatting is only needed on the template
+
+We will work on the following example: an app where we display a list of meals. The list looks like this:
+
+```
+meals = [
+    {name: 'burger', satisfaction: 92},
+    {name: 'sushi', satisfaction: 95},
+    {name: 'veggie salad', satisfaction: 12}
+]
+```
+
+And, we would like to display this list and the satisfaction related to each meal and to add an emoji matching the satisfaction rate. For example, this 🤩 if the satisfaction rate is equal or higher than 90%.
+
+
+### How to solve our usecase ? / Design choices
+
+We have first two very different options :
+- OOP approach (?): add the emoji code to our model (either back-end or in our front-end app, on reception of the data /// complicated to send forn back end - ex: difficult encoding)
+-> Defenitely an option, but we need to ask ourself if this information is relevant in our 'meal' model or not
+// détailler ?
+- FP approach (?): compute this information when needed (on display) without altering our model
+
+Both approches have their pros and cons. Let's say we want to keep our model intact  for later usage and we go for the second approach.
+
+
 ### Pipes: a functionnal solution for a better SoC:
 
-To illustrate this point, let's start with an example. Here is the usecase: we need to format a string to concat an input (a name) to 'Hello '.
-// to match an id with a name (let's assume we have mapping available).
+Before anything, we need somewhere to do a satisfaction / emoji mapping : 
+```
+const SATISFACTION_MAPPING = [
+    [90, '🤩'], [70, '😃'], [50, '🙂'], [30, '😐'], [0, '🤢']
+]
+```
 
-// add a flag according to provenance to each plate
+Again, 2 options are available:
 
-// or a custom emoji according to the rating of products
 
-Object oriented = attach the emoji code in the "meal" object
-functional = apply a separated traetment to get the flag
-
-(1st level of functional / OOP)
-
-2 Options are available:
-
-First, we can create a method in our component and call it from our template.
-
+- create a method in our component and call it from our template.
 
 {% highlight javascript %}
     // component.ts
-    optionsIds = ['burger', 'sushi', 'pizza'];
-    optionsNames = ['burger', 'sushi', 'pizza'];
-    convertIdToName(id) {
-        return options[id];
+    convertToEmoji(rate) {
+        element = SATISFACTION_MAPPING.find( (element) => rate > element[0] );
+        if (0 < element.length) {
+            return element[1];
+        } else {
+            return null;
+        }
     }
 
 {% endhighlight %}
 
 ```
 <ul>
-    <li *ngFor="let id of optionsIds">{{convertIdToName(id)}}</li>
+    <li *ngFor="let meal of meals">{{meal.name}} \{\{ convertToEmoji(meal.satisfaction) }}</li>
 </ul>
 ```
 
-// disavdvantage : of ngSwitch => what if several times ? Space + non changeable
+- second option: creating a custom pipe:
 
-**Nb: I know what you might be thinking, 'unusefully complicated' => might have been simpler to directly use the `optionsName` in the template
-or, if the id had been needed, to merge the 2

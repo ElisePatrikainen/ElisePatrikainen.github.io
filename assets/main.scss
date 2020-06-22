@@ -1,0 +1,77 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+h1 {
+    font-size: 3rem;
+    letter-spacing: -1px;
+    line-height: 1;
+    color: #a45353d9;
+    font-weight: bold;
+}
+
+.post-header {
+    margin-bottom: 3rem;
+}
+
+p, li {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+code {
+    background-color: #a64f4f1c;
+    color: #a64f4f;
+    border: white;
+    font-weight: bold;
+}
+
+pre {
+    background-color: white !important;
+    code {
+        background-color: white;
+    }
+    // code {
+    //     background-color: white;
+    //     color: #a64f4f;
+    //     font-weight: bold;
+    // }
+}
+
+h3 {
+    color: #737373;
+    font-size: 1.90rem;
+    font-weight: 500;
+    margin: 2.2rem 0 1.75rem 0;
+}
+
+blockquote {
+    color: #7d6868;
+    border-left: 4px solid #a64f4fa1;
+    padding-left: 15px;
+    font-style: normal;
+    font-size: 1rem;
+}
+
+ul {
+    margin-left: 15px;
+    list-style: none;
+}
+
+li::before {
+    content: "-";
+    color: #a64f4f;
+    font-weight: bold;
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 1em; /* Also needed for space (tweak if needed) */
+    margin-left: -1em; /* Also needed for space (tweak if needed) */
+}
+
+h3::before {
+    content: "#";
+    color: #a64f4f;
+    font-weight: bold;
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 1em; /* Also needed for space (tweak if needed) */
+}
