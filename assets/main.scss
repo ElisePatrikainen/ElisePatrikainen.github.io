@@ -33,3 +33,19 @@
     }
 
 }
+
+.changed-code {
+    padding-left: 10px;
+    margin-left: -10px;
+
+    &.added-code {
+        background-color: #0fb40026;
+        width: 100%
+    }
+    
+    &.removed-code {
+        background-color: #ff000026;
+        width: 100%
+    }
+}
+
